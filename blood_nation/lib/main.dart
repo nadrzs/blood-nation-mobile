@@ -1,4 +1,4 @@
-import 'package:blood_nation/pages/home.dart';
+import 'package:blood_nation/pages/signup.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home: Home(),
+      home: SignUp(),
     );
   }
 }
