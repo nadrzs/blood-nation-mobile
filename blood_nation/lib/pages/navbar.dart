@@ -1,6 +1,8 @@
 import 'package:blood_nation/pages/home.dart';
+import 'package:blood_nation/pages/profile.dart';
+import 'package:blood_nation/pages/reservation.dart';
+import 'package:blood_nation/pages/try.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
@@ -10,64 +12,61 @@ class Navbar extends StatefulWidget {
 }
 
 class _NavbarState extends State<Navbar> {
-  int _selectedIndex = 0;
+  int currentIndex = 0;
 
-  // Screen
-  static const List<Widget> _widgetOptions = <Widget>[
-    Home(),
-    Text("Reservation",
-        style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600)),
-    Text("Profile", style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600))
+  List pages = const [
+    TryPage(), 
+    ReservationPage(), 
+    ProfilePage()
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("BloodNation"),
-        centerTitle: true,
-        actions: <Widget>[
-          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications))
-        ],
-        backgroundColor: const Color.fromARGB(255, 156, 200, 222),
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+        title: Text("Blood Nation"),
+        elevation: 10,
+        foregroundColor: Colors.white,
+        backgroundColor: Color(0xffce8b91),
+        leading: Container(
+          child: Image.asset('assets/images/logo.png'),
+        ),
         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(25),
-                bottomRight: Radius.circular(25))),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(15),
+            bottomRight: Radius.circular(15)
+          )
+        ),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      body: pages[currentIndex],
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [BoxShadow(blurRadius: 20, color: Colors.blue)]),
-        child: SafeArea(
-            child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-          child: GNav(
-            rippleColor: Colors.grey[300]!,
-            hoverColor: Colors.grey[100]!,
-            gap: 8,
-            activeColor: Colors.blue,
-            iconSize: 24,
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            tabBackgroundColor: Colors.grey[100]!,
-            color: Colors.black,
-            tabs: [
-              GButton(icon: Icons.home, text: "Home"),
-              GButton(icon: Icons.menu, text: "Reservation"),
-              GButton(icon: Icons.person, text: "Person")
-            ],
-            selectedIndex: _selectedIndex,
-            onTabChange: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-          ),
-        )),
+        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+              color: Colors.red.withOpacity(0.5),
+              blurRadius: 25,
+              offset: const Offset(8, 20))
+        ]),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(30),
+          child: BottomNavigationBar(
+              backgroundColor: Colors.white,
+              selectedItemColor: Colors.redAccent,
+              unselectedItemColor: Colors.black,
+              currentIndex: currentIndex,
+              onTap: (index) {
+                setState(() {
+                  currentIndex = index;
+                });
+              },
+              items: const [
+                BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.menu), label: "Reservation"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.person), label: "Profile"),
+              ]),
+        ),
       ),
     );
   }
