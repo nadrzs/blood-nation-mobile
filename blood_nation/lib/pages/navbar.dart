@@ -1,7 +1,8 @@
+import 'package:blood_nation/pages/history.dart';
 import 'package:blood_nation/pages/home.dart';
 import 'package:blood_nation/pages/profile.dart';
 import 'package:blood_nation/pages/reservation.dart';
-import 'package:blood_nation/pages/try.dart';
+import 'package:blood_nation/pages/success.dart';
 import 'package:flutter/material.dart';
 
 class Navbar extends StatefulWidget {
@@ -15,8 +16,9 @@ class _NavbarState extends State<Navbar> {
   int currentIndex = 0;
 
   List pages = const [
-    TryPage(), 
-    ReservationPage(), 
+    Home(), 
+    ReservationPage(),
+    HistoryPage(),
     ProfilePage()
   ];
 
@@ -27,7 +29,7 @@ class _NavbarState extends State<Navbar> {
         title: Text("Blood Nation"),
         elevation: 10,
         foregroundColor: Colors.white,
-        backgroundColor: Color(0xffce8b91),
+        backgroundColor: Color(0xfff07167),
         leading: Container(
           child: Image.asset('assets/images/logo.png'),
         ),
@@ -60,9 +62,12 @@ class _NavbarState extends State<Navbar> {
                 });
               },
               items: const [
-                BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home), label: "Home"),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.menu), label: "Reservation"),
+                    BottomNavigationBarItem(
+                    icon: Icon(Icons.history), label: "History"),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.person), label: "Profile"),
               ]),

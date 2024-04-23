@@ -1,5 +1,7 @@
 import 'package:blood_nation/pages/login.dart';
+import 'package:blood_nation/pages/otp.dart';
 import 'package:flutter/material.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -51,7 +53,14 @@ class RegisterPage extends StatelessWidget {
                   inputFile(label: "Username"),
                   inputFile(label: "Email"),
                   inputFile(label: "Password", obscureText: true),
-                  inputFile(label: "Confirm Password", obscureText: true)
+                  IntlPhoneField(
+                    decoration: InputDecoration(
+                      labelText: "Phone Number",
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide()
+                      )
+                    ),
+                  )
                 ],
               ),
               Container(
@@ -62,7 +71,7 @@ class RegisterPage extends StatelessWidget {
                       elevation: 0,
                       color: Color(0xffC31C2B),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => OtpForm()));
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50)),

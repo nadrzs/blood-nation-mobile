@@ -1,32 +1,44 @@
-List data = [
+List eventData = [
   {
     "title": "Donor Darah PMI",
-    "desc": "Kuota: 1200",
+    "kuota": "1200",
+    "lokasi": "Jakarta",
+    "date": "Tanggal: 2001 - 09 - 11 12:37:12.304Z",
     "image": "https://source.unsplash.com/featured/?hospital"
   },
   {
     "title": "Donor Darah Mandiri",
-    "desc": "Kuota: 1500",
+    "kuota": "1500",
+    "lokasi": "Depok",
+    "date": "Tanggal: 2001 - 09 - 13 02:14:19.090Z",
     "image": "https://source.unsplash.com/featured/?hospital"
   },
   {
     "title": "Donor Darah RS Harapan Jaya",
-    "desc": "Kuota: 100",
+    "kuota": "100",
+    "lokasi": "Jakarta",
+    "date": "Tanggal: 2001 - 09 - 19 08:36:35.877Z",
     "image": "https://source.unsplash.com/featured/?hospital"
   },
   {
     "title": "Donor Darah Pemuda Pecinta Alam",
-    "desc": "Kuota: 250",
+    "kuota": "250",
+    "lokasi": "Jakarta",
+    "date": "Tanggal: 2001 - 09 - 11 22:08:08.137Z",
     "image": "https://source.unsplash.com/featured/?hospital"
   },
   {
     "title": "Donor Darah Pemkot",
-    "desc": "Kuota: 1200",
+    "kuota": "1200",
+    "lokasi": "Bandung",
+    "date": "Tanggal: 2001 - 09 - 10 20:01:35.296Z",
     "image": "https://source.unsplash.com/featured/?hospital"
   },
   {
     "title": "Donor Darah Jalin Kasih",
-    "desc": "Kuota: 800",
+    "kuota": "800",
+    "lokasi": "Bogor",
+    "date": "Tanggal: 2001 - 09 - 15 13:12:36.621Z",
     "image": "https://source.unsplash.com/featured/?hospital"
   }
 ];

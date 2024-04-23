@@ -13,6 +13,10 @@ dependencies:
   google_nav_bar: ^5.0.6
   icons_plus: ^5.0.0
   flutter_native_splash: ^2.3.11
+  intl_phone_field: ^3.2.0
+  pinput: ^4.0.0
+  flutter_launcher_icons: ^0.13.1
+  timeline_tile: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -24,3 +28,7 @@ flutter:
 
   assets:
   - assets/images/
+
+flutter_icons:
+  android: "blood_nation"
+  image_path: "assets/images/logo.png"
