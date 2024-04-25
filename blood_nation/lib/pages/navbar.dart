@@ -16,7 +16,7 @@ class _NavbarState extends State<Navbar> {
   int currentIndex = 0;
 
   List pages = const [
-    Home(), 
+    Home(),
     ReservationPage(),
     HistoryPage(),
     ProfilePage()
