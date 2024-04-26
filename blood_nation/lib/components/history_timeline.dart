@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:blood_nation/components/timeline_card.dart';
 import 'package:flutter/material.dart';
 import 'package:timeline_tile/timeline_tile.dart';
