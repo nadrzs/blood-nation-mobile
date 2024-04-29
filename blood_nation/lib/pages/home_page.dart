@@ -1,16 +1,16 @@
 import 'package:blood_nation/components/data/models/event.dart';
 import 'package:blood_nation/components/data/services/api_services.dart';
-import 'package:blood_nation/components/event_card.dart';
+import 'package:blood_nation/components/widgets/event_card.dart';
 import 'package:flutter/material.dart';
 
-class ListPages extends StatefulWidget {
-  const ListPages({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<ListPages> createState() => _ListPagesState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _ListPagesState extends State<ListPages> {
+class _HomePageState extends State<HomePage> {
   late final List<EventModels> data;
 
   @override

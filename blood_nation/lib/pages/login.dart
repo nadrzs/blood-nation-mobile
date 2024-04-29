@@ -1,4 +1,4 @@
-import 'package:blood_nation/components/input_field.dart';
+import 'package:blood_nation/components/widgets/input_field.dart';
 import 'package:blood_nation/pages/detail_event.dart';
 import 'package:blood_nation/pages/navbar.dart';
 import 'package:blood_nation/pages/register.dart';

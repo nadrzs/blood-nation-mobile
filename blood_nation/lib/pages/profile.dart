@@ -1,4 +1,4 @@
-import 'package:blood_nation/components/item_profile.dart';
+import 'package:blood_nation/components/widgets/item_profile.dart';
 import 'package:blood_nation/pages/login.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +10,10 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  String username = "johndoe";
+  String email = "johndoe@gmail.com";
+  String phoneNumber = "08123456789";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,16 +28,16 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           const SizedBox(height: 60),
           ItemProfile(
-              title: "Username", subtitle: "johndoe", iconData: Icons.person),
+              title: "Username", subtitle: username, iconData: Icons.person),
           SizedBox(height: 40),
           ItemProfile(
               title: "Email",
-              subtitle: "johndoe@email.com",
+              subtitle: email,
               iconData: Icons.email),
           SizedBox(height: 40),
           ItemProfile(
               title: "Phone Number",
-              subtitle: "08123456789",
+              subtitle: phoneNumber,
               iconData: Icons.phone),
           SizedBox(height: 60),
           Container(
