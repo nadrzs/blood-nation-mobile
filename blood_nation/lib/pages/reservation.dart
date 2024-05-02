@@ -1,10 +1,8 @@
 import 'package:blood_nation/components/widgets/input_field.dart';
 import 'package:blood_nation/pages/navbar.dart';
-import 'package:blood_nation/pages/register.dart';
 import 'package:blood_nation/provider/setting_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
 class ReservationPage extends StatefulWidget {
   const ReservationPage({super.key});

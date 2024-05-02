@@ -25,7 +25,7 @@ class EventCard extends StatelessWidget {
         padding: EdgeInsets.all(12),
         margin: EdgeInsets.all(12),
         decoration: BoxDecoration(
-            color: Color(0xffC31C2B), borderRadius: BorderRadius.circular(16)),
+            color: Color(0xffff0ead2), borderRadius: BorderRadius.circular(16)),
         child: Row(
           children: [
             Expanded(flex: 1, child: Image.network(data.imageUrl)),

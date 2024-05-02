@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late final List<EventModels> data;
+  var status = 0;
 
   @override
   void initState() {
@@ -22,6 +23,26 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: TextField(
+          decoration: InputDecoration(hintText: "Cari Event"),
+        ),
+        actions: [
+          IconButton(
+            icon: status == 0 ? Icon(Icons.list) : Icon(Icons.grid_view),
+            onPressed: () {
+              setState(() {
+                if (status == 0) {
+                  status = 1;
+                } else {
+                  status = 0;
+                }
+              });
+            },
+          )
+        ],
+      ),
       body: ListView.builder(
           itemCount: data.length,
           itemBuilder: (_, index) {

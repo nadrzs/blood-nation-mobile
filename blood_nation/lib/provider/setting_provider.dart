@@ -34,21 +34,10 @@ class SettingProvider extends ChangeNotifier {
   passwordValidator(String value) {
     if (value.isEmpty) {
       return "Password is required";
-    } else if (strongPassword.hasMatch(value)) {
-      return "Password is not strong enough";
     } else {
       return null;
     }
   }
-
-  /* 
-  Password Requirement
-  1. Must have a small letter
-  2. Must have a capital letter
-  3. Must have a digit or number
-  4. Contain a special char
-  5. Minimum 8 char long
-  */
 
   // Show and Hide Password
   void showHidePassword() {

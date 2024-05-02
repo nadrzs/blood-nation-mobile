@@ -1,4 +1,4 @@
-import 'package:blood_nation/components/widgets/history_timeline.dart';
+import 'package:blood_nation/components/widgets/history_card.dart';
 import 'package:flutter/material.dart';
 
 class HistoryPage extends StatefulWidget {
@@ -12,55 +12,68 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 50),
-        child: ListView(
-          children: const [
-            HistoryTimeLine(
-              isFirst: true, 
-              isLast: false, 
-              isPast: true,
-              timelineCard: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Address: Jl. Anggrek No. 21, Jakarta"),
-                  Text("Age: 18"),
-                  Text("Weight: 54 kg"),
-                  Text("Blood Type: A")
-                ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              Text(
+                "History",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
-            ),
-            HistoryTimeLine(
-              isFirst: false, 
-              isLast: false, 
-              isPast: true,
-              timelineCard: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Address: Jl. Soekarno Hatta No. 18, Bogor"),
-                  Text("Age: 21"),
-                  Text("Weight: 47 kg"),
-                  Text("Blood Type: O")
-                ],
+              const SizedBox(height: 60),
+              HistoryCard(
+                title: "History 1", 
+                subtitle: "Lorem Ipsum", 
+                iconData: Icons.history
               ),
-            ),
-            HistoryTimeLine(
-              isFirst: false, 
-              isLast: true, 
-              isPast: false,
-              timelineCard: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Address: Jl. Anyelir No. 24, Jakarta"),
-                  Text("Age: 28"),
-                  Text("Weight: 56 kg"),
-                  Text("Blood Type: B")
-                ],
+              const SizedBox(height: 30),
+              HistoryCard(
+                title: "History 2", 
+                subtitle: "Lorem Ipsum", 
+                iconData: Icons.history
               ),
-            )
-          ],
+              const SizedBox(height: 30),
+              HistoryCard(
+                title: "History 3", 
+                subtitle: "Lorem Ipsum", 
+                iconData: Icons.history
+              ),
+              const SizedBox(height: 30),
+              HistoryCard(
+                title: "History 4", 
+                subtitle: "Lorem Ipsum", 
+                iconData: Icons.history
+              ),
+              const SizedBox(height: 30),
+              HistoryCard(
+                title: "History 5", 
+                subtitle: "Lorem Ipsum", 
+                iconData: Icons.history
+              ),
+              const SizedBox(height: 30),
+              HistoryCard(
+                title: "History 6", 
+                subtitle: "Lorem Ipsum", 
+                iconData: Icons.history
+              ),
+              const SizedBox(height: 30),
+              HistoryCard(
+                title: "History 7", 
+                subtitle: "Lorem Ipsum", 
+                iconData: Icons.history
+              ),
+              const SizedBox(height: 30),
+              HistoryCard(
+                title: "History 8", 
+                subtitle: "Lorem Ipsum", 
+                iconData: Icons.history
+              ),
+            ],
+          ),
         ),
-      )
+      ),
     );
   }
 }
