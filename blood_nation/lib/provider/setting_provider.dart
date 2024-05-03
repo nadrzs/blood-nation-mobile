@@ -41,15 +41,6 @@ class SettingProvider extends ChangeNotifier {
     }
   }
 
-  /* 
-  Password Requirement
-  1. Must have a small letter
-  2. Must have a capital letter
-  3. Must have a digit or number
-  4. Contain a special char
-  5. Minimum 8 char long
-  */
-
   // Show and Hide Password
   void showHidePassword() {
     _isVisible = !_isVisible;
@@ -80,6 +71,17 @@ class SettingProvider extends ChangeNotifier {
   weightValidator(String value) {
     if (value.isEmpty) {
       return "Weight is Required";
+    } else {
+      return null;
+    }
+  }
+
+  // Blood Type Validator
+  bloodTypeValidator(String value) {
+    if (value.isEmpty) {
+      return "Blood Type is Required";
+    } else if (value != 'A' && value != 'B' && value != 'AB' && value != 'O') {
+      return "Blood Type is not valid";
     } else {
       return null;
     }

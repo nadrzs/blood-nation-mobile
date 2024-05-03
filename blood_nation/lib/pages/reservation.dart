@@ -81,7 +81,7 @@ class _ReservationPageState extends State<ReservationPage> {
                   label: "Blood Type",
                   controller: bloodType,
                   inputType: TextInputType.text,
-                  validator: (value) => provider.validator(value, "Blood Type is Required"),
+                  validator: (value) => provider.bloodTypeValidator(value),
                 ),
                 SizedBox(height: 10),
                 Container(
