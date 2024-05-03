@@ -25,7 +25,7 @@ class EventCard extends StatelessWidget {
         padding: EdgeInsets.all(12),
         margin: EdgeInsets.all(12),
         decoration: BoxDecoration(
-            color: Color(0xffC31C2B), borderRadius: BorderRadius.circular(16)),
+            color: Color(0xffff0ead2), borderRadius: BorderRadius.circular(16)),
         child: Row(
           children: [
             Expanded(flex: 1, child: Image.network(data.imageUrl)),
@@ -44,7 +44,35 @@ class EventCard extends StatelessWidget {
         ),
       );
     } else {
-      return Text("Grid View");
+      return Container(
+        child: GridView.count(
+          crossAxisCount: 1,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Container(
+                height: 100,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Color(0xffff0ead2),
+                    borderRadius: BorderRadius.circular(16)),
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Image.network(data.imageUrl)
+                    ),
+                    Text(data.name),
+                    Text(data.quota.toString()),
+                    Text(data.location),
+                    Text(data.date)
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      );
     }
   }
 }

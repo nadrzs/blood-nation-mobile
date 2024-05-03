@@ -1,5 +1,5 @@
 import 'package:blood_nation/pages/splash_screen.dart';
-import 'package:blood_nation/provider/setting_provider.dart';
+import 'package:blood_nation/provider/validation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,6 +1,6 @@
 import 'package:blood_nation/components/widgets/input_field.dart';
 import 'package:blood_nation/pages/login.dart';
-import 'package:blood_nation/provider/setting_provider.dart';
+import 'package:blood_nation/provider/validation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
