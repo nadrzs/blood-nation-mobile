@@ -16,60 +16,61 @@ class _HistoryPageState extends State<HistoryPage> {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
-            children: [
-              const SizedBox(height: 20),
+            children: <Widget>[
+              const SizedBox(height: 30),
               Text(
                 "History",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 60),
-              HistoryCard(
-                title: "History 1", 
-                subtitle: "Lorem Ipsum", 
-                iconData: Icons.history
+              const SizedBox(height: 30),
+              Container(
+                padding: EdgeInsets.only(top: 50),
+                height: 200,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/images/history.png"),
+                        fit: BoxFit.fitHeight)),
               ),
               const SizedBox(height: 30),
               HistoryCard(
-                title: "History 2", 
-                subtitle: "Lorem Ipsum", 
-                iconData: Icons.history
-              ),
+                  title: "History 1",
+                  subtitle: "Lorem Ipsum",
+                  iconData: Icons.history),
               const SizedBox(height: 30),
               HistoryCard(
-                title: "History 3", 
-                subtitle: "Lorem Ipsum", 
-                iconData: Icons.history
-              ),
+                  title: "History 2",
+                  subtitle: "Lorem Ipsum",
+                  iconData: Icons.history),
               const SizedBox(height: 30),
               HistoryCard(
-                title: "History 4", 
-                subtitle: "Lorem Ipsum", 
-                iconData: Icons.history
-              ),
+                  title: "History 3",
+                  subtitle: "Lorem Ipsum",
+                  iconData: Icons.history),
               const SizedBox(height: 30),
               HistoryCard(
-                title: "History 5", 
-                subtitle: "Lorem Ipsum", 
-                iconData: Icons.history
-              ),
+                  title: "History 4",
+                  subtitle: "Lorem Ipsum",
+                  iconData: Icons.history),
               const SizedBox(height: 30),
               HistoryCard(
-                title: "History 6", 
-                subtitle: "Lorem Ipsum", 
-                iconData: Icons.history
-              ),
+                  title: "History 5",
+                  subtitle: "Lorem Ipsum",
+                  iconData: Icons.history),
               const SizedBox(height: 30),
               HistoryCard(
-                title: "History 7", 
-                subtitle: "Lorem Ipsum", 
-                iconData: Icons.history
-              ),
+                  title: "History 6",
+                  subtitle: "Lorem Ipsum",
+                  iconData: Icons.history),
               const SizedBox(height: 30),
               HistoryCard(
-                title: "History 8", 
-                subtitle: "Lorem Ipsum", 
-                iconData: Icons.history
-              ),
+                  title: "History 7",
+                  subtitle: "Lorem Ipsum",
+                  iconData: Icons.history),
+              const SizedBox(height: 30),
+              HistoryCard(
+                  title: "History 8",
+                  subtitle: "Lorem Ipsum",
+                  iconData: Icons.history),
             ],
           ),
         ),

@@ -49,7 +49,7 @@ class SettingProvider extends ChangeNotifier {
   phoneValidator(String value) {
     if (value.isEmpty) {
       return "Phone Number is Required";
-    } else if (value.length < 14) {
+    } else if (value.length < 12) {
       return "Phone Number is Not Valid";
     } else {
       return null;
@@ -69,6 +69,17 @@ class SettingProvider extends ChangeNotifier {
   weightValidator(String value) {
     if (value.isEmpty) {
       return "Weight is Required";
+    } else {
+      return null;
+    }
+  }
+
+  // Blood Type Validator
+  bloodTypeValidator(String value) {
+    if (value.isEmpty) {
+      return "Blood Type is Required";
+    } else if (value != 'A' && value != 'B' && value != 'AB' && value != 'O') {
+      return "Blood Type is not valid";
     } else {
       return null;
     }
