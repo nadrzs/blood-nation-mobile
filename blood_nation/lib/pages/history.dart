@@ -1,4 +1,4 @@
-import 'package:blood_nation/components/history_timeline.dart';
+import 'package:blood_nation/components/widgets/history_timeline.dart';
 import 'package:flutter/material.dart';
 
 class HistoryPage extends StatefulWidget {

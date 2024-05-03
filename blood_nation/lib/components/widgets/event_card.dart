@@ -31,12 +31,12 @@ class EventCard extends StatelessWidget {
             Expanded(flex: 1, child: Image.network(data.imageUrl)),
             Expanded(
               flex: 4,
-              child: const Column(
+              child: Column(
                 children: [
-                  // Text(data.name),
-                  // Text(data.quota.toString()),
-                  // Text(data.location),
-                  // Text(data.date)
+                  Text(data.name),
+                  Text(data.quota.toString()),
+                  Text(data.location),
+                  Text(data.date)
                 ],
               ),
             ),
