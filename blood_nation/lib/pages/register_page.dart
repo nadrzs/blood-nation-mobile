@@ -1,24 +1,24 @@
 import 'package:blood_nation/components/widgets/input_field.dart';
-import 'package:blood_nation/pages/detail_event.dart';
-import 'package:blood_nation/pages/navbar.dart';
-import 'package:blood_nation/pages/register.dart';
-import 'package:blood_nation/provider/setting_provider.dart';
+import 'package:blood_nation/pages/login_page.dart';
+import 'package:blood_nation/provider/validation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
+  final username = TextEditingController();
   final email = TextEditingController();
   final password = TextEditingController();
+  final phoneNumber = TextEditingController();
 
-  final provider = SettingProvider();
+  final provider = ValidationProvider();
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -33,12 +33,12 @@ class _LoginPageState extends State<LoginPage> {
               children: <Widget>[
                 SizedBox(height: 30),
                 Text(
-                  "Log In",
+                  "Register",
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 10),
                 Text(
-                  "Log In to Your Account",
+                  "Create an Account",
                   style: TextStyle(fontSize: 15, color: Colors.grey),
                 ),
                 SizedBox(height: 30),
@@ -47,10 +47,20 @@ class _LoginPageState extends State<LoginPage> {
                   height: 200,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage("assets/images/login.png"),
+                          image: AssetImage("assets/images/register.png"),
                           fit: BoxFit.fitHeight)),
                 ),
                 SizedBox(height: 30),
+                // Username
+                InputField(
+                  icon: Icons.account_circle_rounded,
+                  label: "Username",
+                  controller: username,
+                  inputType: TextInputType.text,
+                  validator: (value) =>
+                      provider.validator(value, "Username is required"),
+                ),
+
                 // Email
                 InputField(
                   icon: Icons.email,
@@ -61,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 // Password
-                Consumer<SettingProvider>(builder: (context, notifier, child) {
+                Consumer<ValidationProvider>(builder: (context, notifier, child) {
                   return InputField(
                     icon: Icons.lock,
                     label: "Password",
@@ -76,6 +86,16 @@ class _LoginPageState extends State<LoginPage> {
                     validator: (value) => provider.passwordValidator(value),
                   );
                 }),
+
+                // Phone Number
+                InputField(
+                  icon: Icons.phone,
+                  label: "Phone Number",
+                  controller: phoneNumber,
+                  inputType: TextInputType.phone,
+                  inputFormat: [FilteringTextInputFormatter.digitsOnly],
+                  validator: (value) => provider.phoneValidator(value),
+                ),
                 SizedBox(height: 30),
                 Container(
                   padding: EdgeInsets.only(top: 3, left: 3),
@@ -87,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Navbar()));
+                            MaterialPageRoute(builder: (context) => LoginPage()));
                       } else {
                         provider.showSnackBar("Fill the Form", context);
                       }
@@ -95,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50)),
                     child: Text(
-                      "Log In",
+                      "Register",
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 18,
@@ -108,22 +128,21 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "Don't Have an Account? ",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 18
-                      ),
+                      "Already have an account?",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
                     ),
                     InkWell(
                       child: Text(
-                        "Register Here",
+                        " Log In",
                         style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 18
-                        ),
+                            fontWeight: FontWeight.w400, fontSize: 18),
                       ),
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterPage()));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginPage()));
                       },
                     )
                   ],
