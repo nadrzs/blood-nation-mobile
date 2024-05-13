@@ -1,5 +1,6 @@
 import 'package:blood_nation/components/widgets/input_field.dart';
 import 'package:blood_nation/pages/login_page.dart';
+import 'package:blood_nation/provider/register_provider.dart';
 import 'package:blood_nation/provider/validation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -71,7 +72,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
 
                 // Password
-                Consumer<ValidationProvider>(builder: (context, notifier, child) {
+                Consumer<ValidationProvider>(
+                    builder: (context, notifier, child) {
                   return InputField(
                     icon: Icons.lock,
                     label: "Password",
@@ -104,12 +106,31 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 60,
                     elevation: 0,
                     color: Color(0xffC31C2B),
-                    onPressed: () {
+                    onPressed: () async {
                       if (formKey.currentState!.validate()) {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => LoginPage()));
+                        try {
+                          final user = await registerUser(
+                            username.text,
+                            email.text,
+                            password.text,
+                            phoneNumber.text,
+                          );
+                          print(user);
+
+                          if (user != null) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()),
+                            );
+                          }
+                        } catch (e) {
+                          provider.showSnackBar(
+                              "Failed to register user", context);
+                        }
                       } else {
-                        provider.showSnackBar("Fill the Form", context);
+                        provider.showSnackBar(
+                            "Please fill in all fields", context);
                       }
                     },
                     shape: RoundedRectangleBorder(

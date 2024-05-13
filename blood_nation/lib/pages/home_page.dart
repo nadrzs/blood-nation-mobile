@@ -1,4 +1,4 @@
-import 'package:blood_nation/components/data/models/event.dart';
+import 'package:blood_nation/components/data/models/event_models.dart';
 import 'package:blood_nation/components/data/services/api_services.dart';
 import 'package:blood_nation/components/widgets/event_card.dart';
 import 'package:blood_nation/pages/detail_event.dart';
@@ -53,6 +53,7 @@ class _HomePageState extends State<HomePage> {
               child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2),
+                      itemCount: data.length,
                   itemBuilder: (_, index) {
                     return EventCard.grid(data: data[index]);
                   }),
