@@ -1,8 +1,7 @@
-import 'package:blood_nation/pages/history.dart';
-import 'package:blood_nation/pages/home.dart';
+import 'package:blood_nation/pages/history_page.dart';
 import 'package:blood_nation/pages/home_page.dart';
-import 'package:blood_nation/pages/profile.dart';
-import 'package:blood_nation/pages/reservation.dart';
+import 'package:blood_nation/pages/profile_page.dart';
+import 'package:blood_nation/pages/reservation_page.dart';
 import 'package:flutter/material.dart';
 
 class Navbar extends StatefulWidget {

@@ -1,7 +1,8 @@
 import 'package:blood_nation/components/widgets/input_field.dart';
 import 'package:blood_nation/pages/navbar.dart';
-import 'package:blood_nation/pages/register.dart';
-import 'package:blood_nation/provider/setting_provider.dart';
+import 'package:blood_nation/pages/register_page.dart';
+import 'package:blood_nation/pages/success_page.dart';
+import 'package:blood_nation/provider/validation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +20,7 @@ class _ReservationPageState extends State<ReservationPage> {
   final weight = TextEditingController();
   final bloodType = TextEditingController();
 
-  final provider = SettingProvider();
+  final provider = ValidationProvider();
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -81,7 +82,7 @@ class _ReservationPageState extends State<ReservationPage> {
                   label: "Blood Type",
                   controller: bloodType,
                   inputType: TextInputType.text,
-                  validator: (value) => provider.validator(value, "Blood Type is Required"),
+                  validator: (value) => provider.bloodTypeValidator(value),
                 ),
                 SizedBox(height: 10),
                 Container(
@@ -94,7 +95,7 @@ class _ReservationPageState extends State<ReservationPage> {
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Navbar()));
+                            MaterialPageRoute(builder: (context) => SuccessPage()));
                       } else {
                         provider.showSnackBar("Fill the Form", context);
                       }

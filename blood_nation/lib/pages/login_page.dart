@@ -1,10 +1,9 @@
 import 'package:blood_nation/components/widgets/input_field.dart';
-import 'package:blood_nation/pages/detail_event.dart';
 import 'package:blood_nation/pages/navbar.dart';
-import 'package:blood_nation/pages/register.dart';
-import 'package:blood_nation/provider/setting_provider.dart';
+import 'package:blood_nation/pages/register_page.dart';
+import 'package:blood_nation/provider/login_provider.dart';
+import 'package:blood_nation/provider/validation_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -18,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   final email = TextEditingController();
   final password = TextEditingController();
 
-  final provider = SettingProvider();
+  final provider = ValidationProvider();
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -61,7 +60,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 // Password
-                Consumer<SettingProvider>(builder: (context, notifier, child) {
+                Consumer<ValidationProvider>(
+                    builder: (context, notifier, child) {
                   return InputField(
                     icon: Icons.lock,
                     label: "Password",
@@ -84,12 +84,29 @@ class _LoginPageState extends State<LoginPage> {
                     height: 60,
                     elevation: 0,
                     color: Color(0xffC31C2B),
-                    onPressed: () {
+                    onPressed: () async {
                       if (formKey.currentState!.validate()) {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Navbar()));
+                        try {
+                          final user = await loginUser(
+                            email.text,
+                            password.text,
+                          );
+                          print(user);
+
+                          if (user != null) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Navbar()),
+                            );
+                          }
+                        } catch (e) {
+                          provider.showSnackBar(
+                              "Failed to register user", context);
+                        }
                       } else {
-                        provider.showSnackBar("Fill the Form", context);
+                        provider.showSnackBar(
+                            "Please fill in all fields", context);
                       }
                     },
                     shape: RoundedRectangleBorder(
@@ -109,21 +126,20 @@ class _LoginPageState extends State<LoginPage> {
                   children: <Widget>[
                     Text(
                       "Don't Have an Account? ",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 18
-                      ),
+                      style:
+                          TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
                     ),
                     InkWell(
                       child: Text(
                         "Register Here",
                         style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 18
-                        ),
+                            fontWeight: FontWeight.w400, fontSize: 18),
                       ),
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterPage()));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => RegisterPage()));
                       },
                     )
                   ],

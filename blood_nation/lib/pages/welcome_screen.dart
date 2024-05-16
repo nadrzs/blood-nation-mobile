@@ -1,5 +1,5 @@
-import 'package:blood_nation/pages/login.dart';
-import 'package:blood_nation/pages/register.dart';
+import 'package:blood_nation/pages/login_page.dart';
+import 'package:blood_nation/pages/register_page.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
