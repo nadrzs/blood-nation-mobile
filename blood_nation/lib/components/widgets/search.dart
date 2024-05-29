@@ -53,7 +53,7 @@ class SearchData extends SearchDelegate {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => DetailEvent()));
+                              builder: (context) => DetailEvent(id: '02693888-eac8-454b-8ec9-2a3fad35cf5b',)));
                     },
                     child: GridView.builder(
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -69,7 +69,7 @@ class SearchData extends SearchDelegate {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => DetailEvent()));
+                              builder: (context) => DetailEvent(id: '02693888-eac8-454b-8ec9-2a3fad35cf5b',)));
                     },
                     child: ListView.builder(
                         itemCount: data?.length ?? 0, // Check for null

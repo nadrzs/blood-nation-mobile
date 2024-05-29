@@ -16,7 +16,7 @@ class _NavbarState extends State<Navbar> {
 
   List pages = [
     HomePage(),
-    ReservationPage(),
+    // ReservationPage(),
     HistoryPage(),
     ProfilePage()
   ];

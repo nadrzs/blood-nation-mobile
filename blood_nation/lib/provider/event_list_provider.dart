@@ -32,13 +32,15 @@ class EventList {
       // print(objectData);
 
       if (query != null) {
-        results = results
+        results = objectData
             .where((element) =>
-                element.name!.toLowerCase().contains(query.toLowerCase()))
+                element.name.toLowerCase().contains(query.toLowerCase()))
             .toList();
-      }
 
-      return objectData;
+        return results;
+      } else {
+        return objectData;
+      }
     } catch (e) {
       print(e);
 
