@@ -1,4 +1,4 @@
-import 'package:blood_nation/components/data/models/event_models.dart';
+import 'package:blood_nation/components/data/models/event_list_models.dart';
 import 'package:flutter/material.dart';
 
 enum EventCardStyle {
@@ -10,7 +10,7 @@ enum EventCardStyle {
 }
 
 class EventCard extends StatelessWidget {
-  final EventModels data;
+  final EventListModels data;
   final EventCardStyle style;
 
   const EventCard.list({super.key, required this.data})
@@ -34,9 +34,15 @@ class EventCard extends StatelessWidget {
               child: Column(
                 children: [
                   Text(data.name),
-                  Text(data.quota.toString()),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Quota: '),
+                      Text(data.quota.toString()),
+                    ],
+                  ),
                   Text(data.location),
-                  Text(data.date)
+                  Text(data.date.toString())
                 ],
               ),
             ),
@@ -55,14 +61,17 @@ class EventCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16)),
             child: Column(
               children: [
-                Expanded(
-                  flex: 1,
-                  child: Image.network(data.imageUrl)
-                ),
+                Expanded(flex: 1, child: Image.network(data.imageUrl)),
                 Text(data.name),
-                Text(data.quota.toString()),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Quota: '),
+                    Text(data.quota.toString()),
+                  ],
+                ),
                 Text(data.location),
-                Text(data.date)
+                Text(data.date.toString())
               ],
             ),
           ),

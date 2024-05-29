@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:blood_nation/provider/headers_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:blood_nation/components/data/models/login_models.dart';
 
@@ -38,6 +39,8 @@ Future<LogInModels?> loginUser(String email, String password) async {
   //   return null;
   // }
   final LogInModels loginModels = LogInModels.fromJson(loginResponse);
+
+  HeadersProvider.storeToken(loginModels.token);
 
   return loginModels;
 

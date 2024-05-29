@@ -14,7 +14,7 @@ class Navbar extends StatefulWidget {
 class _NavbarState extends State<Navbar> {
   int currentIndex = 0;
 
-  List pages = const [
+  List pages = [
     HomePage(),
     ReservationPage(),
     HistoryPage(),
