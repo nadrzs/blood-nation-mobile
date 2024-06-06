@@ -1,5 +1,5 @@
 import 'package:blood_nation/components/data/models/event_list_models.dart';
-import 'package:blood_nation/provider/headers_provider.dart';
+import 'package:blood_nation/provider/headers_event.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
