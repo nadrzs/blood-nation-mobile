@@ -1,12 +1,15 @@
 import 'package:blood_nation/components/widgets/input_field.dart';
 import 'package:blood_nation/pages/success_page.dart';
 import 'package:blood_nation/provider/add_reservation_provider.dart';
+import 'package:blood_nation/provider/headers_reservation.dart';
 import 'package:blood_nation/provider/validation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class ReservationPage extends StatefulWidget {
-  const ReservationPage({super.key});
+  final String eventId;
+
+  const ReservationPage({super.key, required this.eventId});
 
   @override
   State<ReservationPage> createState() => _ReservationPageState();
@@ -21,6 +24,19 @@ class _ReservationPageState extends State<ReservationPage> {
   final provider = ValidationProvider();
   final formKey = GlobalKey<FormState>();
 
+  String? idUser;
+
+  _stateToken() async {
+    idUser = await HeadersReservation.userId();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _stateToken();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +47,7 @@ class _ReservationPageState extends State<ReservationPage> {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
+                SizedBox(height: 40),
                 Text(
                   "Reservation",
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
@@ -51,7 +68,8 @@ class _ReservationPageState extends State<ReservationPage> {
                   label: "Address",
                   controller: address,
                   inputType: TextInputType.text,
-                  validator: (value) => provider.validator(value, "Address is Required"),
+                  validator: (value) =>
+                      provider.validator(value, "Address is Required"),
                 ),
                 SizedBox(height: 5),
                 // Age
@@ -82,7 +100,7 @@ class _ReservationPageState extends State<ReservationPage> {
                   inputType: TextInputType.text,
                   validator: (value) => provider.bloodTypeValidator(value),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 100),
                 Container(
                   padding: EdgeInsets.only(top: 3, left: 3),
                   child: MaterialButton(
@@ -93,24 +111,25 @@ class _ReservationPageState extends State<ReservationPage> {
                     onPressed: () async {
                       if (formKey.currentState!.validate()) {
                         try {
-                          final reservation = await addReservation(
-                            address.text,
-                            age.text,
-                            weight.text,
-                            bloodType.text
-                          );
+                          final reservation = await AddReservation()
+                              .addReservationUser(
+                                  address.text,
+                                  age.text,
+                                  weight.text,
+                                  bloodType.text,
+                                  widget.eventId,
+                                  idUser!);
                           print(reservation);
 
                           if (reservation != null) {
                             Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SuccessPage()),
-                            );
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SuccessPage()));
                           }
                         } catch (e) {
                           provider.showSnackBar(
-                              "Failed to register user", context);
+                              "Failed to register reservation", context);
                         }
                       } else {
                         provider.showSnackBar(
