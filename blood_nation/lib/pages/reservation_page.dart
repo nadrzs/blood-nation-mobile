@@ -1,13 +1,15 @@
 import 'package:blood_nation/components/widgets/input_field.dart';
-import 'package:blood_nation/pages/navbar.dart';
-import 'package:blood_nation/pages/register.dart';
-import 'package:blood_nation/provider/setting_provider.dart';
+import 'package:blood_nation/pages/success_page.dart';
+import 'package:blood_nation/provider/add_reservation_provider.dart';
+import 'package:blood_nation/provider/headers_reservation.dart';
+import 'package:blood_nation/provider/validation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
 class ReservationPage extends StatefulWidget {
-  const ReservationPage({super.key});
+  final String eventId;
+
+  const ReservationPage({super.key, required this.eventId});
 
   @override
   State<ReservationPage> createState() => _ReservationPageState();
@@ -19,8 +21,21 @@ class _ReservationPageState extends State<ReservationPage> {
   final weight = TextEditingController();
   final bloodType = TextEditingController();
 
-  final provider = SettingProvider();
+  final provider = ValidationProvider();
   final formKey = GlobalKey<FormState>();
+
+  String? idUser;
+
+  _stateToken() async {
+    idUser = await HeadersReservation.userId();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _stateToken();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +47,7 @@ class _ReservationPageState extends State<ReservationPage> {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
+                SizedBox(height: 40),
                 Text(
                   "Reservation",
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
@@ -52,7 +68,8 @@ class _ReservationPageState extends State<ReservationPage> {
                   label: "Address",
                   controller: address,
                   inputType: TextInputType.text,
-                  validator: (value) => provider.validator(value, "Address is Required"),
+                  validator: (value) =>
+                      provider.validator(value, "Address is Required"),
                 ),
                 SizedBox(height: 5),
                 // Age
@@ -81,9 +98,9 @@ class _ReservationPageState extends State<ReservationPage> {
                   label: "Blood Type",
                   controller: bloodType,
                   inputType: TextInputType.text,
-                  validator: (value) => provider.validator(value, "Blood Type is Required"),
+                  validator: (value) => provider.bloodTypeValidator(value),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 100),
                 Container(
                   padding: EdgeInsets.only(top: 3, left: 3),
                   child: MaterialButton(
@@ -91,12 +108,32 @@ class _ReservationPageState extends State<ReservationPage> {
                     height: 60,
                     elevation: 0,
                     color: Color(0xffC31C2B),
-                    onPressed: () {
+                    onPressed: () async {
                       if (formKey.currentState!.validate()) {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Navbar()));
+                        try {
+                          final reservation = await AddReservation()
+                              .addReservationUser(
+                                  address.text,
+                                  age.text,
+                                  weight.text,
+                                  bloodType.text,
+                                  widget.eventId,
+                                  idUser!);
+                          print(reservation);
+
+                          if (reservation != null) {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SuccessPage()));
+                          }
+                        } catch (e) {
+                          provider.showSnackBar(
+                              "Failed to register reservation", context);
+                        }
                       } else {
-                        provider.showSnackBar("Fill the Form", context);
+                        provider.showSnackBar(
+                            "Please fill in all fields", context);
                       }
                     },
                     shape: RoundedRectangleBorder(

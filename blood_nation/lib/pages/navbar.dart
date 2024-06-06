@@ -1,9 +1,10 @@
-import 'package:blood_nation/pages/history.dart';
-import 'package:blood_nation/pages/home.dart';
+import 'package:blood_nation/pages/history_page.dart';
 import 'package:blood_nation/pages/home_page.dart';
-import 'package:blood_nation/pages/profile.dart';
-import 'package:blood_nation/pages/reservation.dart';
+import 'package:blood_nation/pages/profile_page.dart';
+import 'package:blood_nation/pages/reservation_page.dart';
+import 'package:blood_nation/provider/profile_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
@@ -15,9 +16,8 @@ class Navbar extends StatefulWidget {
 class _NavbarState extends State<Navbar> {
   int currentIndex = 0;
 
-  List pages = const [
+  List pages = [
     HomePage(),
-    ReservationPage(),
     HistoryPage(),
     ProfilePage()
   ];
@@ -34,11 +34,9 @@ class _NavbarState extends State<Navbar> {
           child: Image.asset('assets/images/logo.png'),
         ),
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(15),
-            bottomRight: Radius.circular(15)
-          )
-        ),
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(15),
+                bottomRight: Radius.circular(15))),
       ),
       body: pages[currentIndex],
       bottomNavigationBar: Container(
@@ -62,11 +60,8 @@ class _NavbarState extends State<Navbar> {
                 });
               },
               items: const [
+                BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.home), label: "Home"),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.menu), label: "Reservation"),
-                    BottomNavigationBarItem(
                     icon: Icon(Icons.history), label: "History"),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.person), label: "Profile"),

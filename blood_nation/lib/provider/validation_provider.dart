@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SettingProvider extends ChangeNotifier {
+class ValidationProvider extends ChangeNotifier {
   bool _isVisible = false;
   bool get isVisible => _isVisible;
 
@@ -22,7 +22,7 @@ class SettingProvider extends ChangeNotifier {
   // Email Validation
   emailValidator(String value) {
     if (value.isEmpty) {
-      return "Email is required";
+      return "Email must contain @";
     } else if (!emailRequirement.hasMatch(value)) {
       return "Email is not valid";
     } else {
@@ -41,15 +41,6 @@ class SettingProvider extends ChangeNotifier {
     }
   }
 
-  /* 
-  Password Requirement
-  1. Must have a small letter
-  2. Must have a capital letter
-  3. Must have a digit or number
-  4. Contain a special char
-  5. Minimum 8 char long
-  */
-
   // Show and Hide Password
   void showHidePassword() {
     _isVisible = !_isVisible;
@@ -59,8 +50,8 @@ class SettingProvider extends ChangeNotifier {
   // Phone Number Validation
   phoneValidator(String value) {
     if (value.isEmpty) {
-      return "Phone Number is Required";
-    } else if (value.length < 14) {
+      return "Phone Number must be a number (0123456789)";
+    } else if (value.length < 11) {
       return "Phone Number is Not Valid";
     } else {
       return null;
@@ -80,6 +71,17 @@ class SettingProvider extends ChangeNotifier {
   weightValidator(String value) {
     if (value.isEmpty) {
       return "Weight is Required";
+    } else {
+      return null;
+    }
+  }
+
+  // Blood Type Validator
+  bloodTypeValidator(String value) {
+    if (value.isEmpty) {
+      return "Blood Type is Required";
+    } else if (value != 'A' && value != 'B' && value != 'AB' && value != 'O') {
+      return "Blood Type is not valid";
     } else {
       return null;
     }

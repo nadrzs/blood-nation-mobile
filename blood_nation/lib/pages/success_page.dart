@@ -1,3 +1,4 @@
+import 'package:blood_nation/pages/navbar.dart';
 import 'package:flutter/material.dart';
 
 class SuccessPage extends StatefulWidget {
@@ -50,6 +51,28 @@ class _SuccessPageState extends State<SuccessPage> {
                   )
                 ),
               ),
+              Container(
+              padding: EdgeInsets.only(top: 3, left: 3),
+              child: MaterialButton(
+                minWidth: double.infinity,
+                height: 60,
+                elevation: 0,
+                color: Color(0xffC31C2B),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Navbar()));
+                },
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50)),
+                child: Text(
+                  "Go to Home Page",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                      color: Colors.white),
+                ),
+              ),
+            ),
             ],
           ),
         ),

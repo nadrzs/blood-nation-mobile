@@ -1,4 +1,4 @@
-import 'package:blood_nation/components/data/models/event.dart';
+import 'package:blood_nation/components/data/models/event_list_models.dart';
 import 'package:flutter/material.dart';
 
 enum EventCardStyle {
@@ -10,7 +10,7 @@ enum EventCardStyle {
 }
 
 class EventCard extends StatelessWidget {
-  final EventModels data;
+  final EventListModels data;
   final EventCardStyle style;
 
   const EventCard.list({super.key, required this.data})
@@ -25,7 +25,7 @@ class EventCard extends StatelessWidget {
         padding: EdgeInsets.all(12),
         margin: EdgeInsets.all(12),
         decoration: BoxDecoration(
-            color: Color(0xffC31C2B), borderRadius: BorderRadius.circular(16)),
+            color: Color(0xffff0ead2), borderRadius: BorderRadius.circular(16)),
         child: Row(
           children: [
             Expanded(flex: 1, child: Image.network(data.imageUrl)),
@@ -34,9 +34,15 @@ class EventCard extends StatelessWidget {
               child: Column(
                 children: [
                   Text(data.name),
-                  Text(data.quota.toString()),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Quota: '),
+                      Text(data.quota.toString()),
+                    ],
+                  ),
                   Text(data.location),
-                  Text(data.date)
+                  Text(data.date.toString())
                 ],
               ),
             ),
@@ -44,7 +50,33 @@ class EventCard extends StatelessWidget {
         ),
       );
     } else {
-      return Text("Grid View");
+      return Container(
+        child: Padding(
+          padding: EdgeInsets.all(8),
+          child: Container(
+            height: 100,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                color: Color(0xffff0ead2),
+                borderRadius: BorderRadius.circular(16)),
+            child: Column(
+              children: [
+                Expanded(flex: 1, child: Image.network(data.imageUrl)),
+                Text(data.name),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Quota: '),
+                    Text(data.quota.toString()),
+                  ],
+                ),
+                Text(data.location),
+                Text(data.date.toString())
+              ],
+            ),
+          ),
+        ),
+      );
     }
   }
 }

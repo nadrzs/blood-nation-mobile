@@ -1,5 +1,4 @@
-// Object Model 
-class EventModels {
+class EventDetailListModels {
     final String id;
     final String name;
     final String location;
@@ -10,7 +9,7 @@ class EventModels {
     final String createdAt;
     final String updatedAt;
 
-    EventModels({
+    EventDetailListModels({
         required this.id,
         required this.name,
         required this.location,
@@ -22,15 +21,27 @@ class EventModels {
         required this.updatedAt,
     });
 
-    factory EventModels.fromJson(Map<String, dynamic> json) => EventModels(
+    factory EventDetailListModels.fromJson(Map<String, dynamic> json) => EventDetailListModels(
         id: json["id"],
         name: json["name"],
         location: json["location"],
         quota: json["quota"],
         requirements: json["requirements"],
         date: json["date"],
-        imageUrl: json["imageUrl"],
-        createdAt: json["createdAt"],
-        updatedAt: json["updatedAt"],
+        imageUrl: json["image_url"],
+        createdAt: json["created_at"],
+        updatedAt: json["updated_at"],
     );
+
+    // Map<String, dynamic> toJson() => {
+    //     "id": id,
+    //     "name": name,
+    //     "location": location,
+    //     "quota": quota,
+    //     "requirements": requirements,
+    //     "date": date.toIso8601String(),
+    //     "imageUrl": imageUrl,
+    //     "createdAt": createdAt.toIso8601String(),
+    //     "updatedAt": updatedAt.toIso8601String(),
+    // };
 }
