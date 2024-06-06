@@ -34,8 +34,6 @@ class ValidationProvider extends ChangeNotifier {
   passwordValidator(String value) {
     if (value.isEmpty) {
       return "Password is required";
-    } else if (strongPassword.hasMatch(value)) {
-      return "Password is not strong enough";
     } else {
       return null;
     }
