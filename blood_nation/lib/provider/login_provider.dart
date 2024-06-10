@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:blood_nation/provider/headers_event.dart';
-import 'package:blood_nation/provider/headers_provider.dart';
+import 'package:blood_nation/provider/headers_profile.dart';
 import 'package:http/http.dart' as http;
 import 'package:blood_nation/components/data/models/login_models.dart';
 
 Future<LogInModels?> loginUser(String email, String password) async {
-  final Uri loginUrl = Uri.parse('http://10.0.2.2:3000/users/login');
+  final Uri loginUrl = Uri.parse('http://3.27.136.219/users/login');
   final headers = {'Content-Type': 'application/json'};
 
   final Map<String, dynamic> loginData = {"email": email, "password": password};
@@ -42,6 +42,7 @@ Future<LogInModels?> loginUser(String email, String password) async {
   final LogInModels loginModels = LogInModels.fromJson(loginResponse);
 
   HeadersProvider.storeToken(loginModels.token);
+  HeadersProfile.storeId(loginModels.user_id);
 
   return loginModels;
 

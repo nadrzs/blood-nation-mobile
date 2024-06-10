@@ -8,7 +8,7 @@ class EventList {
 
   // Method Get List Data
   Future<List<EventListModels>?> getListData({String? query}) async {
-    final Uri eventListUrl = Uri.parse('http://10.0.2.2:3000/events?page=2');
+    final Uri eventListUrl = Uri.parse('http://3.27.136.219/events');
     final header = await HeadersProvider.headers();
 
     try {
@@ -42,7 +42,7 @@ class EventList {
         return objectData;
       }
     } catch (e) {
-      print(e);
+      // print(e);
 
       return null;
     }

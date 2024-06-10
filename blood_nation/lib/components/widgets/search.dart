@@ -47,37 +47,41 @@ class SearchData extends SearchDelegate {
             );
           } else {
             List<EventListModels>? data = snapshot.data; // Define data here
-            return status == 0
-                ? InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DetailEvent(id: '02693888-eac8-454b-8ec9-2a3fad35cf5b',)));
-                    },
-                    child: GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2),
-                        itemCount: data?.length ?? 0, // Check for null
-                        itemBuilder: (_, index) {
-                          return EventCard.grid(
-                              data: data![index]); // Check for null
-                        }),
-                  )
-                : InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DetailEvent(id: '02693888-eac8-454b-8ec9-2a3fad35cf5b',)));
-                    },
-                    child: ListView.builder(
-                        itemCount: data?.length ?? 0, // Check for null
-                        itemBuilder: (_, index) {
-                          return EventCard.list(
-                              data: data![index]); // Check for null
-                        }),
-                  );
+              return status == 0
+                  ? GridView.builder(
+                      gridDelegate:
+                          SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2),
+                      itemCount: data?.length ?? 0, // Check for null
+                      itemBuilder: (_, index) {
+                        return GestureDetector(
+                          onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailEvent(
+                                      id: data[index].id,
+                                    )));
+                      },
+                          child: EventCard.grid(
+                              data: data![index]),
+                        ); // Check for null
+                      })
+                  : ListView.builder(
+                      itemCount: data?.length ?? 0, // Check for null
+                      itemBuilder: (_, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DetailEvent(
+                                          id: data[index].id,
+                                        )));
+                          },
+                          child: EventCard.list(data: data![index]),
+                        ); // Check for null
+                      });
           }
         });
   }

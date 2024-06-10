@@ -4,7 +4,7 @@ import 'package:blood_nation/components/data/models/register_models.dart';
 
 Future<UserModels?> registerUser(
     String username, String email, String password, String phoneNumber) async {
-  final Uri registerUrl = Uri.parse('http://10.0.2.2:3000/users/register');
+  final Uri registerUrl = Uri.parse('http://3.27.136.219/users/register');
   final headers = {'Content-Type': 'application/json'};
 
   final Map<String, dynamic> registerData = {

@@ -1,6 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class HeadersDetailEventProvider {
+class HeadersHistory {
+  // Get token
   static Future<Map<String, String>> headers() async {
     // Get token from SharedPreferences
     SharedPreferences prefs = await SharedPreferences.getInstance();

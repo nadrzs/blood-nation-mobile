@@ -9,7 +9,7 @@ class ProfileProvider {
   Future<ProfileModels?> getProfileData() async {
     final userId = await HeadersProfile.userId();
     final token = await HeadersProfile.headers();
-    final String profileUrl = 'http://10.0.2.2:3000/users/$userId';
+    final String profileUrl = 'http://3.27.136.219/users/$userId';
     final Map<String, String> queryParams = {'id': userId.toString()};
     final Uri uri = Uri.parse(profileUrl).replace(queryParameters: queryParams);
 

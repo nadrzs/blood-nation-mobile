@@ -15,16 +15,24 @@ class AddReservation {
       String eventId,
       String userId) async {
     final token = await HeadersProfile.headers();
-    final String addReservationUrl = 'http://10.0.2.2:3000/reservations/$eventId/$userId';
+    final String addReservationUrl =
+        'http://3.27.136.219/reservations/$eventId/$userId';
     final Map<String, String> queryParams = {
       'eventId': eventId,
       'userId': userId
     };
 
-    final Uri uri = Uri.parse(addReservationUrl).replace(queryParameters: queryParams);
+    // print('Token: ');
+    // print(token);
 
-    print('Uri: ');
-    print(uri);
+    print('user id: ');
+    print(userId);
+
+    final Uri uri =
+        Uri.parse(addReservationUrl).replace(queryParameters: queryParams);
+
+    // print('Uri: ');
+    // print(uri);
 
     final AddReservationModels addReservationData = AddReservationModels(
         address: address,
@@ -32,32 +40,32 @@ class AddReservation {
         weight: int.parse(weight),
         bloodType: bloodType);
 
-    print('Add Reservation Data: ');
-    print(addReservationData);
+    // print('Add Reservation Data: ');
+    // print(addReservationData);
 
     try {
       final response = await http.post(uri,
           headers: token, body: json.encode(addReservationData.toJson()));
 
-      print('Response: ');
-      print(response);
+      // print('Response: ');
+      // print(response);
 
-      print('Response Body: ');
-      print(response.body);
+      // print('Response Body: ');
+      // print(response.body);
 
       final Map<String, dynamic> addReservationResponse =
           json.decode(response.body);
 
-      print('Add Reservation Response: ');
-      print(addReservationResponse);
+      // print('Add Reservation Response: ');
+      // print(addReservationResponse);
 
       final ReservationSuccessModels reservationSuccessModels =
           ReservationSuccessModels.fromJson(addReservationResponse);
 
       return reservationSuccessModels;
     } catch (e) {
-      print('Catch Error: ');
-      print(e);
+      // print('Catch Error: ');
+      // print(e);
 
       return null;
     }

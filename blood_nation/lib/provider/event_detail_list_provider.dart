@@ -6,7 +6,7 @@ import 'dart:convert';
 class EventDetailList {
   // Method Get List Data
   Future<EventDetailListModels?> getDetailData(String id) async {
-    final Uri eventDetailListUrl = Uri.parse('http://10.0.2.2:3000/events/$id');
+    final Uri eventDetailListUrl = Uri.parse('http://3.27.136.219/events/$id');
     final header = await HeadersDetailEventProvider.headers();
 
     try {
